@@ -1824,6 +1824,7 @@ int dbProcessEventInformation(DatabaseData *data,Packet *p,
 	
     case DB_MSSQL:
     case DB_MYSQL:
+	break;	    
     case DB_ORACLE:
     case DB_ODBC:
 	if(strlen(data->timestampHolder) > 20)
