@@ -165,5 +165,22 @@ CREATE TABLE detail  (detail_type TINYINT UNSIGNED NOT NULL,
 INSERT INTO detail (detail_type, detail_text) VALUES (0, 'fast');
 INSERT INTO detail (detail_type, detail_text) VALUES (1, 'full');
 
+# mapping of IP adresses to country of location (using ISO 3166-1 alpha-3 country codes)
+CREATE TABLE geolocation (id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+                        ip VARCHAR(15) NOT NULL,
+                        country VARCHAR(30) NOT NULL,
+                        PRIMARY KEY (id, ip)
+);
+
+CREATE TABLE protocols (pid INT NOT NULL,
+                        protocol VARCHAR(10) NOT NULL,
+                         reference VARCHAR(255)
+);
+
+INSERT INTO protocols VALUES (1, "ICMP", "https://tools.ietf.org/html/rfc792");
+INSERT INTO protocols VALUES (6, "TCP", "https://tools.ietf.org/html/rfc793");
+INSERT INTO protocols VALUES (17, "UDP", "https://tools.ietf.org/html/rfc768");
+
+
 # be sure to also use the snortdb-extra tables if you want
 # mappings for tcp flags, protocols, and ports
