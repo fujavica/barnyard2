@@ -442,7 +442,7 @@ def format_sidmsgmap_v2(rule):
         return " || ".join([
             str(rule.gid), str(rule.sid), str(rule.rev),
             "NOCLASS" if rule.classtype is None else rule.classtype,
-            str(rule.priority), rule.msg] + rule.references)
+            str(rule.priority), rule.msg] + rule.references[:3])
     except:
         logger.error("Failed to format rule as sid-msg-v2.map: %s" % (
             str(rule)))
