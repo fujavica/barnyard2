@@ -57,7 +57,17 @@ CREATE TABLE reference (  ref_id        INT         UNSIGNED NOT NULL AUTO_INCRE
 
 CREATE TABLE reference_system ( `ref_system_id`   INT         UNSIGNED NOT NULL AUTO_INCREMENT,
                                 ref_system_name VARCHAR(20),
+                                url VARCHAR(50),
                                 PRIMARY KEY (`ref_system_id`));
+                                
+INSERT INTO reference_system VALUES(1, 'bugtraq', 'http://www.securityfocus.com/bid/');
+INSERT INTO reference_system VALUES(2, 'cve', 'http://cve.mitre.org/cgi-bin/cvename.cgi?name=');
+INSERT INTO reference_system VALUES(3, 'url', 'http://');
+INSERT INTO reference_system VALUES(4, 'nessus', 'http://cgi.nessus.org/plugins/dump.php3?id=');
+INSERT INTO reference_system VALUES(5, 'McAfee', 'http://vil.nai.com/vil/content/v_');
+INSERT INTO reference_system VALUES(6, 'arachNIDS', 'http://www.whitehats.com/info/IDS');
+INSERT INTO reference_system VALUES(7, 'osvdb', 'http://osvdb.org/show/osvdb/');
+INSERT INTO reference_system VALUES(8, 'msb', 'http://technet.microsoft.com/en-us/security/bulletin/');
 
 CREATE TABLE sig_class ( sig_class_id        INT    UNSIGNED NOT NULL AUTO_INCREMENT,
                          sig_class_name      VARCHAR(60) NOT NULL,
