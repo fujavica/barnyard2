@@ -88,8 +88,8 @@ CREATE TABLE sensor ( sid	  INT 	   UNSIGNED NOT NULL AUTO_INCREMENT,
 # All of the fields of an ip header
 CREATE TABLE iphdr  ( sid 	  INT 	   UNSIGNED NOT NULL,
                       cid 	  INT 	   UNSIGNED NOT NULL,
-                      ip_src      INT      UNSIGNED NOT NULL,
-                      ip_dst      INT      UNSIGNED NOT NULL,
+                      ip_src      VARBINARY(16) NOT NULL,
+                      ip_dst      VARBINARY(16) NOT NULL,
                       ip_ver      TINYINT  UNSIGNED,
                       ip_hlen     TINYINT  UNSIGNED,
                       ip_tos  	  TINYINT  UNSIGNED,
@@ -175,10 +175,10 @@ CREATE TABLE detail  (detail_type TINYINT UNSIGNED NOT NULL,
 INSERT INTO detail (detail_type, detail_text) VALUES (0, 'fast');
 INSERT INTO detail (detail_type, detail_text) VALUES (1, 'full');
 
-# mapping of IP adresses to country of location (using ISO 3166-1 alpha-3 country codes)
+# mapping of IP adresses to country of location (using ISO 3166-1 alpha-2 country codes)
 CREATE TABLE geolocation (id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-                        ip VARCHAR(15) NOT NULL,
-                        country VARCHAR(30) NOT NULL,
+                        ip VARCHAR(40) NOT NULL,
+                        country VARCHAR(3) NOT NULL,
                         PRIMARY KEY (id, ip)
 );
 
