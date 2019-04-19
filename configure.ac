@@ -469,7 +469,27 @@ AC_ARG_ENABLE(ipv6,
 [  --enable-ipv6            Enable IPv6 support],
        enable_ipv6="$enableval", enable_ipv6="no")
 if test "x$enable_ipv6" = "xyes"; then
-    CPPFLAGS="$CPPFLAGS -DSUP_IP6"
+		CPPFLAGS="$CPPFLAGS -DSUP_IP6"
+  AC_MSG_CHECKING(for gmp)
+      if test -r "/usr/include/gmp.h"; then
+		CPPFLAGS="$CPPFLAGS -DGMP"
+		LDFLAGS="${LDFLAGS} ${LIBPRELUDE_LDFLAGS} -lgmp"
+		LIBS="$LIBS ${LIBPRELUDE_LIBS} -lgmp"
+	  else
+	      if test -r "/usr/include/x86_64-linux-gnu/gmp.h"; then
+			CPPFLAGS="$CPPFLAGS -DGMP"
+			LDFLAGS="${LDFLAGS} ${LIBPRELUDE_LDFLAGS} -lgmp"
+			LIBS="$LIBS ${LIBPRELUDE_LIBS} -lgmp"
+		else
+      		FAIL_MESSAGE("gmp headers (/usr/include/gmp.h)", $tmp)
+		fi
+	  fi
+      if test -r "/usr/lib/x86_64-linux-gnu/libgmp.so"; then
+		LDFLAGS="${LDFLAGS} ${LIBPRELUDE_LDFLAGS} -lgmp"
+		LIBS="$LIBS ${LIBPRELUDE_LIBS} -lgmp"
+	  else
+      	FAIL_MESSAGE("gmp libraries (/usr/lib/x86_64-linux-gnu/libgmp.so)", $tmp)
+	  fi
 fi
 AM_CONDITIONAL(HAVE_SUP_IP6, test "x$enable_ipv6" = "xyes")
 
