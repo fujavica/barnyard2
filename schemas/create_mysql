@@ -24,7 +24,7 @@
 CREATE TABLE `schema` ( vseq        INT      UNSIGNED NOT NULL,
                       ctime       DATETIME NOT NULL,
                       PRIMARY KEY (vseq));
-INSERT INTO `schema`  (vseq, ctime) VALUES ('107', now());       
+INSERT INTO `schema`  (vseq, ctime) VALUES ('200', now());       
 
 CREATE TABLE event  ( sid 	  INT 	   UNSIGNED NOT NULL,
                       cid 	  INT 	   UNSIGNED NOT NULL,
